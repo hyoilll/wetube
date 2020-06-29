@@ -16,9 +16,9 @@ userRouter.get(routers.change_password, change_password);
 
 export default userRouter;
 
-/*
-{
-Model   data
-View    how does the data look
-Control function that looks for the data
-}*/
+// /*
+// {
+// Model   data
+// View    how does the data look
+// Control function that looks for the data
+// }*/

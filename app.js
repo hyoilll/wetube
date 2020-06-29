@@ -7,14 +7,23 @@ import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
 import routers from "./routers";
+import { localsMiddleware } from "./middleware";
 
 const app = express();
 
+//application이 더 안전하도록 만듬
+app.use(helmet());
+//template
+app.set("view engine", "pug");
+//kookie를 전달받아서 사용할 수 있도록 만들어주는 미들웨어
 app.use(cookieParser());
+//사용자가 웹사이트로 전달하는 정보들을 검사하는 미들웨어 / requsest에서 form, json의 정보를 검사
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(helmet());
+//application에서 발생하는 모든 일들을 기록함 (log)
 app.use(morgan("dev"));
+//locals middle ware - local변수를 global변수로 사용하도록 해주는 미들웨어
+app.use(localsMiddleware);
 
 app.use(routers.home, globalRouter);
 app.use(routers.users, userRouter);
