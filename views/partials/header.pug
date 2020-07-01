@@ -1,10 +1,22 @@
 header.header
-    .header_column
+    .header-column
         a(href=routes.home)
             i.fab.fa-youtube
-    .header_column
+    .header-column
+        form(action=routes.search, method="get")
+            input(type = "text", placeholder="Search by term...", name="term")
+    .header-column
         ul
-            li
-                a(href=routes.join) Join
-            li
-                a(href=routes.login) Log In
+            //- 로그인을 하기 전 / 후 보여지는 헤드의 메뉴가 달라짐
+            if !user.isAuthenticated
+                li
+                    a(href=routes.join) Join
+                li
+                    a(href=routes.login) Log In
+            else
+                li
+                    a(href=`/videos${routes.upload}`) Upload
+                li
+                    a(href=routes.user_detail(user.id)) Profile
+                li
+                    a(href=routes.logout) Log Out

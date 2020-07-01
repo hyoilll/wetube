@@ -1,0 +1,9 @@
+//- 모듈화 구현한 것
+//- video를 html에 뿌려주는 함수?라고 해야할 것 같음
+
+mixin videoBlock(video = {})
+    .videoBlock
+        a(href=routes.video_detail(video.id))
+            video.videoBlock__thumbnail(src=video.videoFile, controls=true)
+            h4.videoBlock__title=video.title
+            h6.videoBlock__views=video.views
