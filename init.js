@@ -1,6 +1,12 @@
+import "./db";
 import app from "./app";
+import dotenv from "dotenv";
+dotenv.config();
+import "./models/Video";
+import "./models/Comment";
 
-const PORT = 4000;
+//.env에 있는 port로 연결하거나 4000번으로 연결
+const PORT = process.env.PORT || 4000;
 
 const handleListening = () =>
   console.log(`Listening on: http://localhost:${PORT}`);
